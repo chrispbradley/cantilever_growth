@@ -87,6 +87,7 @@ pInit = -6.0
 pRef = 0.0
 
 # Set the user numbers
+contextUserNumber = 1
 coordinateSystemUserNumber = 1
 regionUserNumber = 1
 uBasisUserNumber = 1
@@ -130,15 +131,17 @@ numberOfYNodes = numberOfGlobalYElements*(numberOfNodesXi-1)+1
 numberOfZNodes = numberOfGlobalZElements*(numberOfNodesXi-1)+1
 numberOfNodes = numberOfXNodes*numberOfYNodes*numberOfZNodes
 
+context = iron.Context()
+context.Create(contextUserNumber)
 
 worldRegion = iron.Region()
-iron.Context.WorldRegionGet(worldRegion)
+context.WorldRegionGet(worldRegion)
 
 #iron.DiagnosticsSetOn(iron.DiagnosticTypes.FROM,[1,2,3,4,5],"diagnostics",["FiniteElasticity_FiniteElementResidualEvaluate"])
 
 # Get the number of computational nodes and this computational node number
 computationEnvironment = iron.ComputationEnvironment()
-iron.Context.ComputationEnvironmentGet(computationEnvironment)
+context.ComputationEnvironmentGet(computationEnvironment)
 
 worldWorkGroup = iron.WorkGroup()
 computationEnvironment.WorldWorkGroupGet(worldWorkGroup)
@@ -147,7 +150,7 @@ computationalNodeNumber = worldWorkGroup.GroupNodeNumberGet()
 
 # Create a 3D rectangular cartesian coordinate system
 coordinateSystem = iron.CoordinateSystem()
-coordinateSystem.CreateStart(coordinateSystemUserNumber,iron.Context)
+coordinateSystem.CreateStart(coordinateSystemUserNumber,context)
 coordinateSystem.DimensionSet(numberOfDimensions)
 coordinateSystem.CreateFinish()
 
@@ -161,7 +164,7 @@ region.CreateFinish()
 # Define basis functions
 
 uBasis = iron.Basis()
-uBasis.CreateStart(uBasisUserNumber,iron.Context)
+uBasis.CreateStart(uBasisUserNumber,context)
 uBasis.NumberOfXiSet(numberOfDimensions)
 uBasis.TypeSet(iron.BasisTypes.LAGRANGE_HERMITE_TP)
 if (uInterpolation == LINEAR_LAGRANGE):
@@ -178,7 +181,7 @@ uBasis.CreateFinish()
 
 if (pInterpolation > CONSTANT_LAGRANGE):
     pBasis = iron.Basis()
-    pBasis.CreateStart(pBasisUserNumber,iron.Context)
+    pBasis.CreateStart(pBasisUserNumber,context)
     pBasis.NumberOfXiSet(numberOfDimensions)
     pBasis.TypeSet(iron.BasisTypes.LAGRANGE_HERMITE_TP)
     if (pInterpolation == LINEAR_LAGRANGE):
@@ -456,7 +459,7 @@ problem = iron.Problem()
 problemSpecification = [iron.ProblemClasses.ELASTICITY,
         iron.ProblemTypes.FINITE_ELASTICITY,
         iron.ProblemSubtypes.FINITE_ELASTICITY_WITH_GROWTH_CELLML]
-problem.CreateStart(problemUserNumber,iron.Context,problemSpecification)
+problem.CreateStart(problemUserNumber,context,problemSpecification)
 problem.CreateFinish()
 
 # Create control loops
