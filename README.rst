@@ -10,8 +10,10 @@ Building the example
 Instructions on how to configure and build with CMake::
 
   git clone https://github.com/OpenCMISS-Examples/cantilever_growth.git
+  cd cantilever_growth 
   mkdir build
-  cmake -DOpenCMISSLibs_DIR=/path/to/opencmisslib/install ../cantilever_growth
+  cd build
+  cmake -DOpenCMISS_INSTALL_ROOT=/path/to/opencmiss/install ../.
   make  # cmake --build . will also work here and is much more platform agnostic.
 
 Running the example
@@ -19,8 +21,7 @@ Running the example
 
 Explain how the example is run::
 
-  cd build
-  ./src/fortran/cantilever_growth.F90
+  ./src/fortran/cantilever_growth
 
 or maybe it is a Python only example::
 
