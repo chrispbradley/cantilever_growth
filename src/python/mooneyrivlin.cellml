@@ -1,4 +1,4 @@
-<?xml version='1.0'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <model cmeta:id="MooneyRivlin" name="MooneyRivlin" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
     <!-- Global units -->
     <units name="strain">
@@ -27,12 +27,12 @@
         <variable initial_value="2" name="c1" private_interface="out" units="strain"/>
         <variable initial_value="6" name="c2" private_interface="out" units="strain"/>
         <!-- Variables we want to make available externally -->
-        <variable initial_value="0" name="Tdev11" private_interface="in" public_interface="out" units="stress"/>
-        <variable initial_value="0" name="Tdev22" private_interface="in" public_interface="out" units="stress"/>
-        <variable initial_value="0" name="Tdev33" private_interface="in" public_interface="out" units="stress"/>
-        <variable initial_value="0" name="Tdev12" private_interface="in" public_interface="out" units="stress"/>
-        <variable initial_value="0" name="Tdev13" private_interface="in" public_interface="out" units="stress"/>
-        <variable initial_value="0" name="Tdev23" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev11" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev22" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev33" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev12" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev13" private_interface="in" public_interface="out" units="stress"/>
+        <variable name="Tdev23" private_interface="in" public_interface="out" units="stress"/>
     </component>
     <!--interface-->
     <component cmeta:id="equations" name="equations">

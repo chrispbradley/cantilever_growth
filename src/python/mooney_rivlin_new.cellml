@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model cmeta:id="MooneyRivlin" name="MooneyRivlin" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+    <component name="main">
+        <!-- Units -->
+        <units name="strain">
+            <unit units="dimensionless"/>
+        </units>
+        <units name="stress">
+            <unit units="newton"/>
+            <unit exponent="-2" units="metre"/>
+        </units>
+        <!-- Variables-->
+        <variable initial_value="0" name="C11" units="strain"/>
+        <variable initial_value="0" name="C22" units="strain"/>
+        <variable initial_value="0" name="C33" units="strain"/>
+        <variable initial_value="0" name="C13" units="strain"/>
+        <variable initial_value="0" name="C23" units="strain"/>
+        <variable initial_value="0" name="C12" units="strain"/>
+        <variable initial_value="2" name="c1" units="stress"/>
+        <variable initial_value="6" name="c2" units="stress"/>
+        <variable name="Tdev11" units="stress"/>
+        <variable name="Tdev22" units="stress"/>
+        <variable name="Tdev33" units="stress"/>
+        <variable name="Tdev13" units="stress"/>
+        <variable name="Tdev23" units="stress"/>
+        <variable name="Tdev12" units="stress"/>
+        <!-- Temporary variables-->
+        <variable name="I1" units="dimensionless"/>
+        <variable name="I2" units="dimensionless"/>
+        <variable name="I3" units="dimensionless"/>
+        <variable name="J" units="dimensionless"/>
+        <variable name="negonethird" units="dimensionless"/>
+        <variable name="a" units="dimensionless"/>
+        <variable name="b" units="stress"/>
+        <variable name="c" units="stress"/>
+        <!-- Equations-->
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>I1</ci>
+                <apply>
+                    <plus/>
+                    <ci>C11</ci>
+                    <ci>C22</ci>
+                    <ci>C33</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I2</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>C11</ci>
+                                    <ci>C22</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <ci>C22</ci>
+                                    <ci>C33</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <ci>C33</ci>
+                                    <ci>C11</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>C12</ci>
+                                <ci>C12</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>C23</ci>
+                            <ci>C23</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>C13</ci>
+                        <ci>C13</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I3</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>C11</ci>
+                                    <ci>C22</ci>
+                                    <ci>C33</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <cn cellml:units="strain">2.0</cn>
+                                    <ci>C12</ci>
+                                    <ci>C23</ci>
+                                    <ci>C13</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>C11</ci>
+                                <ci>C23</ci>
+                                <ci>C23</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>C22</ci>
+                            <ci>C13</ci>
+                            <ci>C13</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>C33</ci>
+                        <ci>C12</ci>
+                        <ci>C12</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>J</ci>
+                <apply>
+                    <root/>
+                    <ci>I3</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>negonethird</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                    </apply>
+                    <cn cellml:units="dimensionless">3.0</cn>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>a</ci>
+                <apply>
+                    <power/>
+                    <ci>J</ci>
+                    <ci>negonethird</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>b</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="strain">2.0</cn>
+                    </apply>
+                    <ci>c2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>c</ci>
+                <apply>
+                    <times/>
+                    <cn cellml:units="strain">2.0</cn>
+                    <apply>
+                        <plus/>
+                        <ci>c1</ci>
+                        <apply>
+                            <times/>
+                            <ci>I1</ci>
+                            <ci>c2</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev11</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>b</ci>
+                            <ci>C11</ci>
+                        </apply>
+                        <ci>c</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev22</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>b</ci>
+                            <ci>C22</ci>
+                        </apply>
+                        <ci>c</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev33</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>b</ci>
+                            <ci>C33</ci>
+                        </apply>
+                        <ci>c</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev12</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <ci>b</ci>
+                    <ci>C12</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev13</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <ci>b</ci>
+                    <ci>C13</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>Tdev23</ci>
+                <apply>
+                    <times/>
+                    <ci>a</ci>
+                    <ci>b</ci>
+                    <ci>C23</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

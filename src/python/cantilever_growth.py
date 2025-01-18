@@ -376,48 +376,48 @@ growthCellML.StateFieldCreateFinish()
 # Create the CellML environment for the consitutative law
 constituativeCellML = oc.CellML()
 constituativeCellML.CreateStart(constituativeCellMLUserNumber,region)
-constituativeCellMLIdx = constituativeCellML.ModelImport("mooneyrivlin.cellml")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C11")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C12")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C13")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C22")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C23")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/C33")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/c1")
-constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"equations/c2")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev11")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev12")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev13")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev22")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev23")
-constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"equations/Tdev33")
+constituativeCellMLIdx = constituativeCellML.ModelImport("mooney_rivlin_new.cellml")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C11")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C12")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C13")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C22")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C23")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/C33")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/c1")
+constituativeCellML.VariableSetAsKnown(constituativeCellMLIdx,"main/c2")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev11")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev12")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev13")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev22")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev23")
+constituativeCellML.VariableSetAsWanted(constituativeCellMLIdx,"main/Tdev33")
 constituativeCellML.CreateFinish()
 
 # Create CellML <--> OpenCMISS field maps. Map the stress and strain fields.
 constituativeCellML.FieldMapsCreateStart()
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,1,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C11",oc.FieldParameterSetTypes.VALUES)
+    constituativeCellMLIdx,"main/C11",oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,2,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C12",oc.FieldParameterSetTypes.VALUES)
+    constituativeCellMLIdx,"main/C12",oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,3,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C13",oc.FieldParameterSetTypes.VALUES)
+    constituativeCellMLIdx,"main/C13",oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,4,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C22",oc.FieldParameterSetTypes.VALUES)
+    constituativeCellMLIdx,"main/C22",oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,5,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C23",oc.FieldParameterSetTypes.VALUES)
+    constituativeCellMLIdx,"main/C23",oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.CreateFieldToCellMLMap(dependentField,oc.FieldVariableTypes.U1,6,oc.FieldParameterSetTypes.VALUES,
-    constituativeCellMLIdx,"equations/C33",oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev11",oc.FieldParameterSetTypes.VALUES,
+    constituativeCellMLIdx,"main/C33",oc.FieldParameterSetTypes.VALUES)
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev11",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,1,oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev12",oc.FieldParameterSetTypes.VALUES,
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev12",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,2,oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev13",oc.FieldParameterSetTypes.VALUES,
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev13",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,3,oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev22",oc.FieldParameterSetTypes.VALUES,
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev22",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,4,oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev23",oc.FieldParameterSetTypes.VALUES,
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev23",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,5,oc.FieldParameterSetTypes.VALUES)
-constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"equations/Tdev33",oc.FieldParameterSetTypes.VALUES,
+constituativeCellML.CreateCellMLToFieldMap(constituativeCellMLIdx,"main/Tdev33",oc.FieldParameterSetTypes.VALUES,
     dependentField,oc.FieldVariableTypes.U2,6,oc.FieldParameterSetTypes.VALUES)
 constituativeCellML.FieldMapsCreateFinish()
 
@@ -434,8 +434,8 @@ constituativeCellMLParametersField.VariableLabelSet(oc.FieldVariableTypes.U,"Con
 constituativeCellML.ParametersFieldCreateFinish()
 
 # Set up the materials constants
-c1ComponentNumber = constituativeCellML.FieldComponentGet(constituativeCellMLIdx,oc.CellMLFieldTypes.PARAMETERS,"equations/c1")
-c2ComponentNumber = constituativeCellML.FieldComponentGet(constituativeCellMLIdx,oc.CellMLFieldTypes.PARAMETERS,"equations/c2")
+c1ComponentNumber = constituativeCellML.FieldComponentGet(constituativeCellMLIdx,oc.CellMLFieldTypes.PARAMETERS,"main/c1")
+c2ComponentNumber = constituativeCellML.FieldComponentGet(constituativeCellMLIdx,oc.CellMLFieldTypes.PARAMETERS,"main/c2")
 constituativeCellMLParametersField.ComponentValuesInitialiseDP(oc.FieldVariableTypes.U,oc.FieldParameterSetTypes.VALUES,
                                                                c1ComponentNumber,c1)
 constituativeCellMLParametersField.ComponentValuesInitialiseDP(oc.FieldVariableTypes.U,oc.FieldParameterSetTypes.VALUES,
@@ -478,7 +478,7 @@ problem.SolversCreateStart()
 problem.SolverGet([oc.ControlLoopIdentifiers.NODE],1,odeIntegrationSolver)
 problem.SolverGet([oc.ControlLoopIdentifiers.NODE],2,nonlinearSolver)
 nonlinearSolver.outputType = oc.SolverOutputTypes.MONITOR
-nonlinearSolver.NewtonJacobianCalculationTypeSet(oc.JacobianCalculationTypes.FD)
+nonlinearSolver.NewtonJacobianCalculationTypeSet(oc.JacobianCalculationTypes.EQUATIONS)
 nonlinearSolver.NewtonAbsoluteToleranceSet(1e-11)
 nonlinearSolver.NewtonSolutionToleranceSet(1e-11)
 nonlinearSolver.NewtonRelativeToleranceSet(1e-11)
